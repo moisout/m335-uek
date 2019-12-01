@@ -5,12 +5,18 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "android": "cd ./cordova-project/ && cordova run android",
+    "android-b": "cd ./cordova-project/ && cordova build android",
+    "browser": "cd ./cordova-project/ && cordova run browser"
   },
   "dependencies": {
+    "@mdi/font": "^4.6.95",
     "core-js": "^3.4.3",
+    "roboto-fontface": "*",
     "vue": "^2.6.10",
-    "vue-router": "^3.1.3"
+    "vue-router": "^3.1.3",
+    "vuetify": "^2.1.12"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",
@@ -18,10 +24,15 @@
     "@vue/cli-service": "^4.1.0",
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.3",
+    "deepmerge": "^4.2.2",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "fibers": "^4.0.2",
     "node-sass": "^4.12.0",
+    "sass": "^1.23.7",
     "sass-loader": "^8.0.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-cli-plugin-vuetify": "^2.0.2",
+    "vue-template-compiler": "^2.6.10",
+    "vuetify-loader": "^1.3.0"
   }
 }
