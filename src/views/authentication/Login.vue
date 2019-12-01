@@ -9,13 +9,18 @@
           </v-toolbar>
           <v-card-text>
             <v-form>
-              <v-text-field label="Login" name="login" prepend-icon="account-outline" type="text"></v-text-field>
+              <v-text-field
+                label="Username"
+                name="username"
+                prepend-icon="mdi-account-outline"
+                type="text"
+              ></v-text-field>
 
               <v-text-field
                 id="password"
                 label="Password"
                 name="password"
-                prepend-icon="lock-outline"
+                prepend-icon="mdi-lock-outline"
                 type="password"
               ></v-text-field>
             </v-form>
