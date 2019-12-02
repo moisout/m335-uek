@@ -4,12 +4,12 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <name>Uek335</name>
+    <name>Pictshare</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Share your photos easily
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="maurice@oeger.li" href="http://maurice.oeger.li">
+        Maurice Oegerli
     </author>
     <content src="index.html" />
     <access origin="*" />

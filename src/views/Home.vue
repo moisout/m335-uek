@@ -1,15 +1,15 @@
 <template>
-  <HelloWorld />
+  <v-container>
+    <v-layout
+      text-center
+      wrap
+    ></v-layout>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
-  }
+  name: 'Home'
 }
 </script>

@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.mauriceoegerli.uek" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Uek335</name>
+    <name>Pictshare</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Share your photos easily
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="maurice@oeger.li" href="http://maurice.oeger.li">
+        Maurice Oegerli
     </author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
