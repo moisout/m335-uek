@@ -1,11 +1,11 @@
 {
   "background_color": "#FFF",
   "display": "standalone",
-  "name": "Uek335",
-  "short_name": "Uek335",
+  "name": "Pictshare",
+  "short_name": "Pictshare",
   "version": "com.mauriceoegerli.uek",
-  "description": "A sample Apache Cordova application that responds to the deviceready event.",
-  "author": "Apache Cordova Team",
+  "description": "Share your photos easily",
+  "author": "Maurice Oegerli",
   "icons": [],
   "start_url": "index.html"
 }

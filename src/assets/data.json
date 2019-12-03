@@ -1,0 +1,22 @@
+{
+    "posts": [
+        {
+            "id": 1,
+            "title": "ASD",
+            "description": "asdasd",
+            "image": "sdklfhaorr7848w7"
+        },
+        {
+            "id": 2,
+            "title": "ASDA",
+            "description": "asdasda",
+            "image": "sdklfhaorr7848w7a"
+        },
+        {
+            "id": 2,
+            "title": "ASDB",
+            "description": "asdasdb",
+            "image": "sdklfhaorr7848w7b"
+        }
+    ]
+}

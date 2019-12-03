@@ -1,23 +1,9 @@
 <template>
-  <v-container
-    fluid
-    fill-height
-  >
-    <v-layout
-      align-center
-      justify-center
-    >
-      <v-flex
-        xs12
-        sm8
-        md4
-      >
+  <v-container fluid fill-height>
+    <v-layout align-center justify-center>
+      <v-flex xs12 sm8 md4>
         <v-card class="elevation-12">
-          <v-toolbar
-            color="primary"
-            dark
-            flat
-          >
+          <v-toolbar color="primary" dark flat>
             <v-toolbar-title>Register</v-toolbar-title>
             <v-spacer></v-spacer>
           </v-toolbar>
@@ -44,31 +30,11 @@
                 required
               ></v-text-field>
             </v-form>
-            <v-alert
-              dense
-              outlined
-              type="error"
-              v-if="errorMessage.length > 0"
-            >
-              {{ errorMessage }}
-            </v-alert>
-            <v-alert
-              dense
-              outlined
-              type="error"
-              v-if="errorMessage.length > 0"
-            >
-              {{ errorMessage }}
-            </v-alert>
           </v-card-text>
           <v-card-actions>
-            <v-btn
-              small
-              text
-              @click.stop="openLogin"
-            >Bereits Registriert? Zum Login</v-btn>
+            <v-btn small text @click.stop="openLogin">Bereits Registriert? Zum Login</v-btn>
             <v-spacer></v-spacer>
-            <v-btn color="primary">Register</v-btn>
+            <v-btn color="primary" @click.stop="register" :disabled="!valid">Register</v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -82,7 +48,6 @@ import firebase from 'firebase'
 export default {
   name: 'register',
   data: () => ({
-    errorMessage: '',
     valid: false,
     email: null,
     password: null,
@@ -91,7 +56,7 @@ export default {
       v => /.+@.+/.test(v) || 'Korrekte E-mail erforderlich'
     ],
     passwordRules: [
-      v => !!v || 'Passwort notwendig',
+      v => !!v || 'Passwort erforderlich',
       v => {
         if (v) {
           return v.length >= 8 || 'Passwort muss länger als 8 Zeichen sein'
@@ -103,14 +68,16 @@ export default {
   }),
   methods: {
     register() {
-      let me = this
-      firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-        .then(user => {
-
-        }, err => {
-          console.log(err)
-          me.errorMessage = err
-        })
+      if (this.email && this.password) {
+        firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+          .then(user => {
+            console.log('as', user)
+            this.$emit('successMsg', `Nutzer ${user.user.email} registriert`)
+            this.$router.push('/login')
+          }, err => {
+            this.$emit('errorMsg', err.message)
+          })
+      }
     },
     openLogin() {
       this.$router.push('/login')
