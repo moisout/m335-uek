@@ -50,7 +50,7 @@
     <v-content>
       <router-view @errorMsg="onError" @successMsg="onSuccess"></router-view>
     </v-content>
-    <v-snackbar v-model="snackbar" :color="snackbarColor">
+    <v-snackbar v-model="snackbar" :color="snackbarColor" outline>
       {{ snackbarText }}
       <v-btn color="red" text @click="snackbar = false">OK</v-btn>
     </v-snackbar>

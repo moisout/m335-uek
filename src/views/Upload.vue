@@ -2,7 +2,7 @@
   <div>
     <img ref="cameraImg" src="#" alt />
     <video ref="video"></video>
-    <v-btn @click.stop="captureImage"></v-btn>
+    <v-btn @click.stop="startStream"></v-btn>
   </div>
 </template>
 
@@ -13,27 +13,7 @@ export default {
     imgSrc: null
   }),
   methods: {
-    captureImage() {
-      let me = this
-
-      permissions.requestPermission(permissions.CAMERA, success, error)
-
-      function error() {
-        console.warn('Camera permission is not turned on')
-      }
-
-      function success(status) {
-        if (!status.hasPermission) error()
-      }
-
-      navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-        .then(function (stream) {
-          me.$refs.video.srcObject = stream
-          me.$refs.video.play()
-        })
-        .catch(function (err) {
-          console.log('An error occurred: ' + err)
-        })
+    requestStream() {
 
       // cordova.plugins.CameraStream.startCapture('front')
 
@@ -47,6 +27,9 @@ export default {
       //   quality: 50,
       //   destinationType: destinationType.DATA_URL
       // })
+    },
+    startStream() {
+
     }
   },
   mounted() {

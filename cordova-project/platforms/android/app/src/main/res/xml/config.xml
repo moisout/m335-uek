@@ -30,12 +30,12 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
-    <icon background="res/icon/android/mipmap-ldpi/ic_launcher.png" density="ldpi" foreground="res/icon/android/mipmap-ldpi/ic_launcher.png" />
-    <icon background="res/icon/android/mipmap-mdpi/ic_launcher.png" density="mdpi" foreground="res/icon/android/mipmap-mdpi/ic_launcher.png" />
-    <icon background="res/icon/android/mipmap-hdpi/ic_launcher.png" density="hdpi" foreground="res/icon/android/mipmap-hdpi/ic_launcher.png" />
-    <icon background="res/icon/android/mipmap-xhdpi/ic_launcher.png" density="xhdpi" foreground="res/icon/android/mipmap-xhdpi/ic_launcher.png" />
-    <icon background="res/icon/android/mipmap-xxhdpi/ic_launcher.png" density="xxhdpi" foreground="res/icon/android/mipmap-xxhdpi/ic_launcher.png" />
-    <icon background="res/icon/android/mipmap-xxxhdpi/ic_launcher.png" density="xxxhdpi" foreground="res/icon/android/mipmap-xxxhdpi/ic_launcher.png" />
+    <icon background="res/icon/android/mipmap-ldpi/background.png" density="ldpi" foreground="res/icon/android/mipmap-ldpi/foreground.png" />
+    <icon background="res/icon/android/mipmap-mdpi/background.png" density="mdpi" foreground="res/icon/android/mipmap-mdpi/foreground.png" />
+    <icon background="res/icon/android/mipmap-hdpi/background.png" density="hdpi" foreground="res/icon/android/mipmap-hdpi/foreground.png" />
+    <icon background="res/icon/android/mipmap-xhdpi/background.png" density="xhdpi" foreground="res/icon/android/mipmap-xhdpi/foreground.png" />
+    <icon background="res/icon/android/mipmap-xxhdpi/background.png" density="xxhdpi" foreground="res/icon/android/mipmap-xxhdpi/foreground.png" />
+    <icon background="res/icon/android/mipmap-xxxhdpi/background.png" density="xxxhdpi" foreground="res/icon/android/mipmap-xxxhdpi/foreground.png" />
     <splash density="land-hdpi" src="res/icon/android/splash.png" />
     <splash density="land-ldpi" src="res/icon/android/splash.png" />
     <splash density="land-mdpi" src="res/icon/android/splash.png" />
@@ -47,6 +47,7 @@
     <preference name="loglevel" value="DEBUG" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="SplashScreenDelay" value="1000" />
     <preference name="SplashScreenWidth" value="600" />
     <preference name="SplashScreenHeight" value="300" />
 </widget>
