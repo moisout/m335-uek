@@ -23,6 +23,9 @@
     "cordova-plugin-camera-preview": {
       "ANDROID_SUPPORT_LIBRARY_VERSION": "26+",
       "PACKAGE_NAME": "com.mauriceoegerli.uek"
+    },
+    "nl.madebymark.share": {
+      "PACKAGE_NAME": "com.mauriceoegerli.uek"
     }
   },
   "dependent_plugins": {}

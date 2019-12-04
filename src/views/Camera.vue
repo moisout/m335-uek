@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="camera">
     <v-btn
       class="mt-6 camera-back-btn"
       absolute
@@ -49,7 +49,9 @@ export default {
     }
   },
   mounted() {
-    document.body.classList.add('transparent')
+    setTimeout(() => {
+      document.body.classList.add('transparent')
+    }, 300)
     this.requestStream()
     document.getElementsByTagName()
   },
@@ -121,36 +123,41 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.camera-overlay {
-  overflow: hidden;
-  position: fixed;
-  top: 56px;
-  left: 0;
+.camera {
   width: 100%;
-  height: calc(100% - 56px);
-  display: flex;
-  background-color: #303030;
-  z-index: 4;
-}
+  height: 100%;
 
-.camera-capture-btn {
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-}
+  .camera-overlay {
+    overflow: hidden;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 56px);
+    display: flex;
+    background-color: #303030;
+    z-index: 4;
+  }
 
-.camera-back-btn {
-  bottom: 16px;
-}
+  .camera-capture-btn {
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
-.camera-switch-btn {
-  bottom: 16px;
-}
+  .camera-back-btn {
+    bottom: 16px;
+  }
 
-.camera-feed {
-  width: 100%;
-  position: relative;
-  max-height: 100%;
-  margin: auto;
+  .camera-switch-btn {
+    bottom: 16px;
+  }
+
+  .camera-feed {
+    width: 100%;
+    position: relative;
+    max-height: 100%;
+    margin: auto;
+  }
 }
 </style>

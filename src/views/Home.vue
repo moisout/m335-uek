@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12" md="4" v-for="post in postArray" :key="post.keyId">
         <v-card class="mx-auto" max-width="500" transition="scroll-y-transition">
-          <!-- <v-img class="white--text align-end" height="200px" :src="post.image"> -->
+          <v-img class="white--text align-end" :src="post.image" contain></v-img>
           <v-card-title>{{ post.title }}</v-card-title>
           <!-- </v-img> -->
           <v-card-text class="text--primary">
@@ -11,7 +11,11 @@
           </v-card-text>
 
           <v-card-actions>
-            <v-btn color="orange" text>Share</v-btn>
+            <v-btn
+              color="orange"
+              text
+              @click="share(post.title, post.description,  post.image)"
+            >Share</v-btn>
             <v-btn color="orange" text @click="deleteEntry(post.keyId, post.uid)">Delete</v-btn>
           </v-card-actions>
         </v-card>
@@ -63,6 +67,13 @@ export default {
         })
       } else {
         this.$emit('errorMsg', `Fehler: Keine Berechtigung`)
+      }
+    },
+    share(title, text, url) {
+      try {
+        navigator.share(`${text} ${url}`, title, 'plain/text')
+      } catch (error) {
+        this.$emit('errorMsg', error)
       }
     }
   },

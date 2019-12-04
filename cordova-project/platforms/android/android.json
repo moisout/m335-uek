@@ -27,6 +27,10 @@
             {
               "xml": "<feature name=\"CameraPreview\"><param name=\"android-package\" value=\"com.cordovaplugincamerapreview.CameraPreview\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"Share\"><param name=\"android-package\" value=\"nl.madebymark.share.Share\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -85,6 +89,9 @@
     },
     "cordova-plugin-camera-preview": {
       "ANDROID_SUPPORT_LIBRARY_VERSION": "26+",
+      "PACKAGE_NAME": "com.mauriceoegerli.uek"
+    },
+    "nl.madebymark.share": {
       "PACKAGE_NAME": "com.mauriceoegerli.uek"
     }
   },
@@ -145,6 +152,14 @@
       "clobbers": [
         "CameraPreview"
       ]
+    },
+    {
+      "id": "nl.madebymark.share.Share",
+      "file": "plugins/nl.madebymark.share/www/share.js",
+      "pluginId": "nl.madebymark.share",
+      "clobbers": [
+        "window.navigator.share"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -152,6 +167,7 @@
     "cordova-plugin-splashscreen": "5.0.3",
     "cordova-plugin-camera": "4.1.0",
     "cordova-plugin-android-permissions": "1.0.2",
-    "cordova-plugin-camera-preview": "0.11.1"
+    "cordova-plugin-camera-preview": "0.11.1",
+    "nl.madebymark.share": "0.1.1"
   }
 }

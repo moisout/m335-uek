@@ -121,6 +121,9 @@ export default {
   },
   mounted() {
     firebase.auth().onAuthStateChanged(this.authStateChanged)
+    if (navigator.splashscreen) {
+      navigator.splashscreen.hide()
+    }
   },
   data: () => ({
     drawer: null,

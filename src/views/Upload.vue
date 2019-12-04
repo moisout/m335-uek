@@ -2,6 +2,7 @@
   <v-container>
     <v-form v-model="valid">
       <v-container>
+        <v-progress-linear v-show="uploading" :value="uploadProgress"></v-progress-linear>
         <v-row cols="12" md="4">
           <div class="image-container">
             <img ref="cameraImg" :src="imageSource" />
@@ -23,7 +24,12 @@
         <div class="actions">
           <v-btn small text @click.stop="cancel">Abbrechen</v-btn>
           <v-spacer></v-spacer>
-          <v-btn color="primary" @click.stop="upload" :disabled="!valid">Hochladen</v-btn>
+          <v-btn
+            color="primary"
+            @click.stop="upload"
+            :disabled="!valid"
+            :loading="uploading"
+          >Hochladen</v-btn>
         </div>
       </v-container>
     </v-form>
@@ -31,9 +37,11 @@
 </template>
 
 <script>
-import imageCaptureStore from '@/store/imageCapture.js'
-import db from '@/store/db.js'
+import imageCaptureStore from '@/store/imageCapture'
+import db from '@/store/db'
 import userStore from '@/store/user'
+import storageStore from '@/store/storage'
+import firebase from 'firebase/app'
 
 export default {
   name: 'upload',
@@ -41,6 +49,9 @@ export default {
     title: null,
     description: null,
     valid: false,
+    uploading: false,
+    uploadTask: null,
+    uploadProgress: 0,
     titleRules: [
       v => !!v || 'Titel erforderlich'
     ],
@@ -55,17 +66,64 @@ export default {
   },
   methods: {
     upload() {
+      this.uploading = true
+      this.uploadImage()
+    },
+    uploadPost(imgUrl) {
       let me = this
+      this.loading = true
       db.db.ref('posts').push({
         title: me.title,
         description: me.description,
-        image: 'asd',
+        image: imgUrl,
         uid: userStore.getUserId()
       }).then(() => {
-        this.$emit('successMsg', 'Post gespeichert')
-        this.$router.push('/')
+        me.$emit('successMsg', 'Post gespeichert')
+        me.$router.push('/')
+        me.loading = false
       }, (err) => {
-        this.$emit('errorMsg', `Fehler: ${err}`)
+        me.$emit('errorMsg', `Fehler: ${err}`)
+      })
+    },
+    uploadImage() {
+      let storageRef = storageStore.storageRef
+      let imageRef = storageRef.child(`posts/${this.uuidv4()}.jpg`)
+      let me = this
+      this.uploadTask = imageRef.putString(this.imageSource, 'data_url')
+      this.uploadTask.on(
+        'state_changed',
+        this.imageUploading,
+        (error) => me.$emit('errorMsg', `Fehler: ${error}`),
+        this.imageUploaded
+      )
+    },
+    imageUploading(snapshot) {
+      let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+      console.log(progress)
+      this.uploadProgress = progress
+      switch (snapshot.state) {
+        case firebase.storage.TaskState.PAUSED:
+          console.log('Upload is paused')
+          break
+        case firebase.storage.TaskState.RUNNING:
+          console.log('Upload is running')
+          break
+      }
+    },
+    imageUploaded() {
+      let me = this
+      setTimeout(() => {
+        this.uploading = false
+      }, 500)
+      this.uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+        me.uploadPost(downloadURL)
+      })
+    },
+    uuidv4() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        let r = Math.random() * 16 | 0
+        let v = c === 'x' ? r : (r & 0x3 | 0x8)
+        return v.toString(16)
       })
     },
     cancel() {

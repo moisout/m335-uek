@@ -21,6 +21,9 @@
     },
     "cordova-plugin-camera-preview": {
       "PACKAGE_NAME": "com.mauriceoegerli.uek"
+    },
+    "nl.madebymark.share": {
+      "PACKAGE_NAME": "com.mauriceoegerli.uek"
     }
   },
   "dependent_plugins": {}

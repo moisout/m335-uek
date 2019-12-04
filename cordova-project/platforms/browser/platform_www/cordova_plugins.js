@@ -59,6 +59,14 @@ module.exports = [
         "clobbers": [
             "CameraPreview"
         ]
+    },
+    {
+        "file": "plugins/nl.madebymark.share/www/share.js",
+        "id": "nl.madebymark.share.Share",
+        "pluginId": "nl.madebymark.share",
+        "clobbers": [
+            "window.navigator.share"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -68,7 +76,8 @@ module.exports.metadata =
     "cordova-plugin-splashscreen": "5.0.3",
     "cordova-plugin-camera": "4.1.0",
     "cordova-plugin-android-permissions": "1.0.2",
-    "cordova-plugin-camera-preview": "0.11.1"
+    "cordova-plugin-camera-preview": "0.11.1",
+    "nl.madebymark.share": "0.1.1"
 }
 // BOTTOM OF METADATA
 });
