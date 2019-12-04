@@ -6,9 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "android": "cd ./cordova-project/ && cordova run android",
-    "android-b": "cd ./cordova-project/ && cordova build android",
-    "browser": "cd ./cordova-project/ && cordova run browser"
+    "android": "yarn build && cd ./cordova-project/ && cordova run android",
+    "android-browser": "yarn build && cd ./cordova-project/ && simulate android",
+    "browser": "yarn build && cd ./cordova-project/ && cordova run browser"
   },
   "dependencies": {
     "@mdi/font": "^4.6.95",

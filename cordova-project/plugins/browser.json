@@ -18,6 +18,9 @@
     },
     "cordova-plugin-android-permissions": {
       "PACKAGE_NAME": "com.mauriceoegerli.uek"
+    },
+    "cordova-plugin-camera-preview": {
+      "PACKAGE_NAME": "com.mauriceoegerli.uek"
     }
   },
   "dependent_plugins": {}

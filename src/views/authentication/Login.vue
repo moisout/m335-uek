@@ -63,7 +63,7 @@ export default {
       if (this.email && this.password) {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password)
           .then(user => {
-            console.log('as', user)
+            console.log(user.user)
             this.$emit('successMsg', `Login ${user.user.email} erfolgreich`)
             this.$router.push('/')
           }, err => {

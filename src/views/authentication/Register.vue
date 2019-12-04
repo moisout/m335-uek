@@ -73,7 +73,7 @@ export default {
           .then(user => {
             console.log('as', user)
             this.$emit('successMsg', `Nutzer ${user.user.email} registriert`)
-            this.$router.push('/login')
+            this.$router.push('/')
           }, err => {
             this.$emit('errorMsg', err.message)
           })
