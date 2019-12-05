@@ -1,25 +1,7 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col cols="12" md="4" v-for="post in postArray" :key="post.keyId">
-        <v-card class="mx-auto" max-width="500" transition="scroll-y-transition">
-          <v-img class="white--text align-end" :src="post.image" contain></v-img>
-          <v-card-title>{{ post.title }}</v-card-title>
-          <!-- </v-img> -->
-          <v-card-text class="text--primary">
-            <div>{{ post.description }}</div>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-btn
-              color="orange"
-              text
-              @click="share(post.title, post.description,  post.image)"
-            >Share</v-btn>
-            <v-btn color="orange" text @click="deleteEntry(post.keyId, post.uid)">Delete</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
+      <Post v-for="(post, id) in postArray" :key="post.keyId" :post="post" :itemNr="id" />
     </v-row>
     <v-btn fab fixed bottom right @click.stop="openUpload">
       <v-icon>mdi-plus</v-icon>
@@ -30,9 +12,13 @@
 <script>
 import db from '@/store/db.js'
 import userStore from '@/store/user'
+import Post from '@/components/Post'
 
 export default {
   name: 'Home',
+  components: {
+    Post
+  },
   data() {
     return {
       posts: {}
