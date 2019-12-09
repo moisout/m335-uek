@@ -8,6 +8,7 @@
             <v-spacer></v-spacer>
           </v-toolbar>
           <v-card-text>
+            <p v-if="email">Nutzername: {{ username }}</p>
             <v-form v-model="valid">
               <v-text-field
                 label="Email"
@@ -48,6 +49,14 @@ import 'firebase/auth'
 
 export default {
   name: 'register',
+  computed: {
+    /**
+     * @description Gibt den ersten Teil der email zurück, der später als username verwendet wird.
+     */
+    username() {
+      return this.email ? this.email.split('@')[0] : ''
+    }
+  },
   data: () => ({
     valid: false,
     email: null,
@@ -58,16 +67,13 @@ export default {
     ],
     passwordRules: [
       v => !!v || 'Passwort erforderlich',
-      v => {
-        if (v) {
-          return v.length >= 8 || 'Passwort muss länger als 8 Zeichen sein'
-        } else {
-          return ''
-        }
-      }
+      v => v ? (v.length >= 8 || 'Passwort muss länger als 8 Zeichen sein') : ''
     ]
   }),
   methods: {
+    /**
+     * @description Verwendet die verknüpften properties email und password für eine firebase-registrierung.
+     */
     register() {
       if (this.email && this.password) {
         firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
@@ -80,6 +86,9 @@ export default {
           })
       }
     },
+    /**
+     * @description Leitet auf die Login-Seite weiter.
+     */
     openLogin() {
       this.$router.push('/login')
     }

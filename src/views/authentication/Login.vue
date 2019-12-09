@@ -60,6 +60,9 @@ export default {
     ]
   }),
   methods: {
+    /**
+     * @description Verwendet die verknüpften properties email und password für ein firebase-login.
+     */
     login() {
       if (this.email && this.password) {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password)
@@ -72,6 +75,9 @@ export default {
           })
       }
     },
+    /**
+     * @description Leitet auf die Registrierungs-Seite weiter.
+     */
     openRegister() {
       this.$router.push('/register')
     }

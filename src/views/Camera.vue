@@ -59,10 +59,16 @@ export default {
     document.body.classList.remove('transparent')
   },
   methods: {
+    /**
+     * @description Leitet auf die Hauptseite weiter.
+     */
     backHome() {
       this.stopStream()
       this.$router.push('/')
     },
+    /**
+     * @description Wechselt zwischen Front-und Rück-Kamera.
+     */
     switchCamera() {
       CameraPreview.switchCamera()
     },

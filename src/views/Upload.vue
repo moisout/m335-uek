@@ -13,14 +13,29 @@
         </v-row>
 
         <v-row cols="12" md="4">
-          <v-textarea
-            v-model="description"
-            :rules="descriptionRules"
-            :counter="200"
-            label="Beschreibung"
-            required
-          ></v-textarea>
+          <v-combobox
+            v-model="categories"
+            :items="items"
+            chips
+            clearable
+            label="Kategorien"
+            multiple
+            solo
+          >
+            <template v-slot:selection="{ attrs, item, select, selected }">
+              <v-chip
+                v-bind="attrs"
+                :input-value="selected"
+                close
+                @click="select"
+                @click:close="removeChip(item)"
+              >
+                <strong>{{ item }}</strong>&nbsp;
+              </v-chip>
+            </template>
+          </v-combobox>
         </v-row>
+
         <div class="actions">
           <v-btn small text @click.stop="cancel">Abbrechen</v-btn>
           <v-spacer></v-spacer>
@@ -47,16 +62,15 @@ export default {
   name: 'upload',
   data: () => ({
     title: null,
-    description: null,
     valid: false,
     uploading: false,
     uploadTask: null,
     uploadProgress: 0,
+    categories: [],
+    items: ['Meme', 'Selfie', 'Natur', 'Architektur', 'Autos', 'Essen', 'Tiere', 'OC', 'Code', 'DIY'],
     titleRules: [
-      v => !!v || 'Titel erforderlich'
-    ],
-    descriptionRules: [
-      v => !!v || 'Beschreibung erforderlich'
+      v => !!v || 'Titel erforderlich',
+      v => v ? (v.length <= 30 || 'Titel darf nicht länger als 30 Zeichen sein') : ''
     ]
   }),
   computed: {
@@ -65,6 +79,10 @@ export default {
     }
   },
   methods: {
+    removeChip(item) {
+      this.categories.splice(this.categories.indexOf(item), 1)
+      this.categories = [...this.categories]
+    },
     upload() {
       this.uploading = true
       this.uploadImage()
@@ -74,9 +92,10 @@ export default {
       this.loading = true
       db.db.ref('posts').push({
         title: me.title,
-        description: me.description,
+        categories: me.categories,
         image: imgUrl,
-        uid: userStore.getUserId()
+        uid: userStore.getUserId(),
+        username: userStore.getUserName()
       }).then(() => {
         me.$emit('successMsg', 'Post gespeichert')
         me.$router.push('/')

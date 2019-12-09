@@ -1,8 +1,20 @@
 <template>
   <v-container fluid>
-    <v-row>
-      <Post v-for="(post, id) in postArray" :key="post.keyId" :post="post" :itemNr="id" />
+    <v-row v-if="isLoading">
+      <v-col v-for="n in 4" :key="n" cols="12" xs="12" sm="6" md="4" lg="3" xl="2">
+        <v-skeleton-loader ref="skeleton" type="card" class="mx-auto" elevation="4"></v-skeleton-loader>
+      </v-col>
     </v-row>
+    <v-row>
+      <Post
+        v-for="post in postArray"
+        :key="post.keyId"
+        :post="post"
+        @errorMsg="(msg) => $emit('errorMsg', msg)"
+        @successMsg="(msg) => $emit('successMsg', msg)"
+      />
+    </v-row>
+
     <v-btn fab fixed bottom right @click.stop="openUpload">
       <v-icon>mdi-plus</v-icon>
     </v-btn>
@@ -32,34 +44,19 @@ export default {
           newVal.keyId = key
           return newVal
         }
-      })
+      }).reverse()
+    },
+    isLoading() {
+      return this.postArray.length <= 0
     }
   },
   methods: {
     openUpload() {
-      if (userStore.getUserName()) {
+      if (userStore.getUserEmail()) {
         this.$router.push('/camera')
       } else {
         this.$emit('errorMsg', 'Nicht eingeloggt')
         this.$router.push('/login')
-      }
-    },
-    deleteEntry(id, uid) {
-      if (userStore.getUserId() === uid) {
-        db.db.ref(`posts/${id}`).remove().then(() => {
-          this.$emit('successMsg', 'Post gelöscht')
-        }, (err) => {
-          this.$emit('errorMsg', `Fehler: ${err}`)
-        })
-      } else {
-        this.$emit('errorMsg', `Fehler: Keine Berechtigung`)
-      }
-    },
-    share(title, text, url) {
-      try {
-        navigator.share(`${text} ${url}`, title, 'plain/text')
-      } catch (error) {
-        this.$emit('errorMsg', error)
       }
     }
   },
@@ -68,3 +65,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.skeleton {
+  width: 100%;
+  height: 100%;
+}
+</style>
