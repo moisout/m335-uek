@@ -75,7 +75,7 @@ export default {
   }),
   computed: {
     imageSource() {
-      return `data:image/jpeg;base64,${imageCaptureStore.capturedImage}`
+      return imageCaptureStore.capturedImage
     }
   },
   methods: {

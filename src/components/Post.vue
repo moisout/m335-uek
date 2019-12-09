@@ -12,8 +12,8 @@
       </v-img>
 
       <v-card-subtitle>
-        <v-chip pill small class="chip-margin">
-          <v-icon left color="primary">mdi-account</v-icon>
+        <v-chip pill class="chip-margin" :color="deletable ? 'primary' : 'primary--text'">
+          <v-icon left color="primary-text">mdi-account</v-icon>
           {{ post.username }}
         </v-chip>
       </v-card-subtitle>
@@ -24,20 +24,19 @@
             :key="id"
             color="primary"
             class="chip-margin"
-            small
             outlined
           >{{ category }}</v-chip>
         </div>
       </v-card-text>
 
       <v-card-actions>
-        <v-btn color="orange" text @click="openPost">
+        <v-btn color="secondary" text @click="openPost">
           <v-icon left>mdi-open-in-new</v-icon>Open
         </v-btn>
-        <v-btn color="orange" text @click="share(post.title, post.description, post.image)">
+        <v-btn color="secondary" text @click="share(post.title, post.description, post.image)">
           <v-icon left>mdi-share-variant</v-icon>Share
         </v-btn>
-        <v-btn color="orange" text @click="deletePrompt(post.keyId, post.uid)" v-if="deletable">
+        <v-btn color="secondary" text @click="deletePrompt(post.keyId, post.uid)" v-if="deletable">
           <v-icon left>mdi-delete</v-icon>Delete
         </v-btn>
       </v-card-actions>
@@ -146,7 +145,7 @@ export default {
 
 <style lang="scss" scoped>
 .chip-margin {
-  margin: 4px 4px 0 0;
+  margin: 4px 8px 0 0;
 }
 .v-dialoga {
   background-color: #424242;

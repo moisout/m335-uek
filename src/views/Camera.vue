@@ -118,7 +118,7 @@ export default {
       let me = this
       CameraPreview.takePicture({ width: 640, height: 640, quality: 85 }, (base64PictureData) => {
         me.stopStream()
-        imageCaptureStore.setCapturedImage(base64PictureData)
+        imageCaptureStore.setCapturedImage(`data:image/jpeg;base64,${base64PictureData}`)
         me.$router.push('/upload')
       }, (err) => {
         me.$emit('errorMsg', `Fehler: ${err}`)
