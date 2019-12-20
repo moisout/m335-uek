@@ -47,7 +47,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 
 export default {
-  name: 'register',
+  name: 'login',
   data: () => ({
     valid: false,
     email: null,
